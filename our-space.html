@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="tailwind-config.js"></script>
+<link rel="stylesheet" href="site.css">
 </head>
 <body class="bg-paper text-ink font-sans antialiased leading-relaxed">
 
@@ -33,8 +34,8 @@
         <li><a href="contact.html" class="text-[13.5px] font-medium text-graphite hover:text-ink transition-colors">Contact</a></li>
       </ul>
       <a class="hidden md:inline-flex items-center gap-2 font-mono text-[12.5px] font-semibold uppercase tracking-wider bg-brass text-ink px-[22px] py-3.5 hover:bg-brassdeep hover:text-paper hover:-translate-y-0.5 transition-all" href="https://spacecoworkspace-design.github.io/spaceco-management-system/book.html">Book Now</a>
-      <button id="navToggle" aria-expanded="false" aria-controls="navMobile" aria-label="Open menu" class="md:hidden flex items-center justify-center w-[38px] h-[38px] border border-ink/20 text-ink">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <button id="navToggle" aria-expanded="false" aria-controls="navMobile" aria-label="Open menu" class="md:hidden flex items-center justify-center w-11 h-11 border border-ink/20 text-ink">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       </button>
     </div>
     <nav id="navMobile" class="hidden flex-col gap-0.5 pb-5 pt-2 border-t border-ink/10 md:hidden">
@@ -233,13 +234,13 @@
 
 <div class="lightbox-overlay fixed inset-0 z-[200] flex items-center justify-center p-6 bg-ink/90 opacity-0 pointer-events-none transition-opacity duration-300 motion-reduce:transition-none" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="fixed w-11 h-11 flex items-center justify-center bg-paper/10 border border-paper/25 text-paper hover:bg-brass/30 hover:border-brass transition-colors top-5 right-5" id="lightboxClose" aria-label="Close">
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 3L15 15M15 3L3 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3L15 15M15 3L3 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
   </button>
   <button class="fixed w-11 h-11 flex items-center justify-center bg-paper/10 border border-paper/25 text-paper hover:bg-brass/30 hover:border-brass transition-colors top-1/2 -translate-y-1/2 left-5" id="lightboxPrev" aria-label="Previous photo">
-    <svg width="16" height="16" viewBox="0 0 16 16" class="-scale-x-100"><use href="#arrowRight"/></svg>
+    <svg width="16" height="16" viewBox="0 0 16 16" class="-scale-x-100" aria-hidden="true"><use href="#arrowRight"/></svg>
   </button>
   <button class="fixed w-11 h-11 flex items-center justify-center bg-paper/10 border border-paper/25 text-paper hover:bg-brass/30 hover:border-brass transition-colors top-1/2 -translate-y-1/2 right-5" id="lightboxNext" aria-label="Next photo">
-    <svg width="16" height="16" viewBox="0 0 16 16"><use href="#arrowRight"/></svg>
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="#arrowRight"/></svg>
   </button>
   <div class="relative max-w-[min(920px,92vw)] max-h-[88vh] flex flex-col items-center">
     <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[72vh] w-auto h-auto object-contain border border-paper/[0.14] bg-ink">
