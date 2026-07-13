@@ -15,6 +15,7 @@
 <script src="tailwind-config.js"></script>
 <link rel="stylesheet" href="site.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth-nav.js"></script>
 <style>
   #print-area{display:none;}
   @media print{
@@ -164,9 +165,7 @@
 <div id="print-area"></div>
 
 <script>
-const SUPABASE_URL = 'https://vfevpvfaeiwltixgdmln.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZmZXZwdmZhZWl3bHRpeGdkbWxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1Nzk1OTksImV4cCI6MjA5MzE1NTU5OX0.6cdMfW5rfVD_vA7nI-K6OjLKQrnsTJZflT7QXG4uyF4';
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const sb = window.getSpacecoClient();
 
 let currentClient = null;
 let currentVisits = [];
@@ -300,7 +299,6 @@ function downloadFullReport(){
   await loadDashboard();
 })();
 </script>
-<script src="auth-nav.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

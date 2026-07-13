@@ -15,6 +15,7 @@
 <script src="tailwind-config.js"></script>
 <link rel="stylesheet" href="site.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth-nav.js"></script>
 </head>
 <body class="bg-paper text-ink font-sans antialiased leading-relaxed">
 
@@ -143,9 +144,7 @@
 </footer>
 
 <script>
-const SUPABASE_URL = 'https://vfevpvfaeiwltixgdmln.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZmZXZwdmZhZWl3bHRpeGdkbWxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1Nzk1OTksImV4cCI6MjA5MzE1NTU5OX0.6cdMfW5rfVD_vA7nI-K6OjLKQrnsTJZflT7QXG4uyF4';
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const sb = window.getSpacecoClient();
 
 function switchAccountTab(which){
   document.getElementById('tab-signin-btn').className = 'flex-1 py-2.5 text-[13px] font-semibold uppercase tracking-wide font-mono rounded-sm transition-all ' + (which==='signin' ? 'bg-brass text-ink' : 'text-graphite');
@@ -266,7 +265,6 @@ async function handleSignIn(e){
   if (data.session) window.location.href = 'dashboard.html';
 })();
 </script>
-<script src="auth-nav.js"></script>
 <script src="site.js"></script>
 </body>
 </html>
