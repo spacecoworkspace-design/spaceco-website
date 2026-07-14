@@ -212,7 +212,11 @@ async function handleSignUp(e){
   const email = document.getElementById('su-email').value.trim();
   const password = document.getElementById('su-password').value;
 
-  const { data, error } = await sb.auth.signUp({ email, password });
+  // name/phone are also stored in the auth user's own metadata (not just
+  // this browser's local storage) so they're recovered correctly even if
+  // the visitor confirms their email and signs in from a different
+  // device or browser than the one they signed up on.
+  const { data, error } = await sb.auth.signUp({ email, password, options: { data: { name, phone } } });
   if (error){ showStatus(error.message, true); return; }
 
   if (data.session){
@@ -245,7 +249,10 @@ async function handleSignIn(e){
 
   if (!existing){
     const pendingRaw = localStorage.getItem('pending_client_'+userId);
-    const pending = pendingRaw ? JSON.parse(pendingRaw) : { name: data.user.email, phone: '', email: data.user.email };
+    const meta = data.user.user_metadata || {};
+    const pending = pendingRaw ? JSON.parse(pendingRaw)
+      : (meta.name ? { name: meta.name, phone: meta.phone || '', email: data.user.email }
+      : { name: data.user.email, phone: '', email: data.user.email });
     try{
       existing = await createClientRow(userId, pending.name, pending.phone, pending.email);
       localStorage.removeItem('pending_client_'+userId);
