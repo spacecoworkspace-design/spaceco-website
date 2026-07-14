@@ -122,20 +122,7 @@
         <div class="font-mono text-[11px] font-medium tracking-[0.14em] uppercase text-brassdeep flex items-center gap-2.5 mb-4"><span class="w-4 h-px bg-brassdeep"></span>Around SpaceCo</div>
         <h2 class="font-display font-bold text-[1.7rem] sm:text-4xl">Outside the rooms, the building keeps going.</h2>
       </div>
-      <div data-reveal class="grid grid-cols-1 sm:grid-cols-3 gap-5 opacity-0 translate-y-4 transition-all duration-700 motion-reduce:transition-none">
-        <div class="group relative aspect-[5/4] overflow-hidden border border-ink/10">
-          <img src="outdoor.jpg" alt="Outdoor terrace with beanbags" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 ease-focus group-hover:scale-[1.045]">
-          <span class="absolute left-3.5 bottom-3.5 font-mono text-[11px] tracking-[0.08em] uppercase text-paper bg-ink/55 px-2.5 py-1.5 backdrop-blur-sm">Outdoor Terrace</span>
-        </div>
-        <div class="group relative aspect-[5/4] overflow-hidden border border-ink/10">
-          <img src="reception.jpg" alt="Reception lounge" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 ease-focus group-hover:scale-[1.045]">
-          <span class="absolute left-3.5 bottom-3.5 font-mono text-[11px] tracking-[0.08em] uppercase text-paper bg-ink/55 px-2.5 py-1.5 backdrop-blur-sm">Reception</span>
-        </div>
-        <div class="group relative aspect-[5/4] overflow-hidden border border-ink/10">
-          <img src="coffee-corner.jpg" alt="Coffee corner" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 ease-focus group-hover:scale-[1.045]">
-          <span class="absolute left-3.5 bottom-3.5 font-mono text-[11px] tracking-[0.08em] uppercase text-paper bg-ink/55 px-2.5 py-1.5 backdrop-blur-sm">Coffee Corner</span>
-        </div>
-      </div>
+      <div data-reveal id="aroundGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-5 opacity-0 translate-y-4 transition-all duration-700 motion-reduce:transition-none"></div>
     </div>
   </section>
 
@@ -257,33 +244,75 @@
 (function(){
   var BOOK_URL = "https://spacecoworkspace-design.github.io/spaceco-management-system/book.html";
   var rooms = [
-    {name:"Room 4 Persons (1)", img:"room-4-1.jpg", desc:"Four seats, one whiteboard, zero distractions. Good for pair work or a client call that needs a closed door.", tags:["4 SEATS","250 LE FIRST HR","+80 LE/HR AFTER"]},
-    {name:"Room 4 Persons (2)", img:"room-4-2.jpg", desc:"The other four-seat room. Same focus, different corner of the building.", tags:["4 SEATS","250 LE FIRST HR","+80 LE/HR AFTER"]},
-    {name:"Room 6 Persons", img:"room-6.jpg", desc:"Six seats and a screen on the wall. Built for the meeting that needs a deck.", tags:["6 SEATS","320 LE FIRST HR","+120 LE/HR AFTER"]},
-    {name:"Room 8 Persons", img:"room-8.jpg", desc:"The big table. Eight seats for the whole team, or a pitch that needs the room.", tags:["8 SEATS","370 LE FIRST HR","+180 LE/HR AFTER"]},
-    {name:"Class Room", img:"classroom.jpg", desc:"Rows of desks, a whiteboard up front. For workshops, courses, and teaching a full room.", tags:["TEACHING ROOM","600 LE / HR"]},
-    {name:"Shared Space", img:"shared-space.jpg", desc:"Open tables in a shared room. Work near people who are also getting things done.", tags:["OPEN DESK","50–150 LE / DAY"]},
-    {name:"Drawing Room", img:"drawing-room.jpg", desc:"A stand-up drafting table for sketching, pacing, and thinking on your feet.", tags:["STANDING DESK","80–200 LE / DAY"]}
+    {name:"Room 4 Persons (1)", imgs:["room-4-1.jpg","room-4-1-2.jpg","room-4-1-3.jpg","room-4-1-4.jpg"], desc:"Four seats, one whiteboard, zero distractions. Good for pair work or a client call that needs a closed door.", tags:["4 SEATS","250 LE FIRST HR","+80 LE/HR AFTER"]},
+    {name:"Room 4 Persons (2)", imgs:["room-4-2.jpg","room-4-2-2.jpg"], desc:"The other four-seat room. Same focus, different corner of the building.", tags:["4 SEATS","250 LE FIRST HR","+80 LE/HR AFTER"]},
+    {name:"Room 6 Persons", imgs:["room-6.jpg"], desc:"Six seats and a screen on the wall. Built for the meeting that needs a deck.", tags:["6 SEATS","320 LE FIRST HR","+120 LE/HR AFTER"]},
+    {name:"Room 8 Persons", imgs:["room-8.jpg","room-8-2.jpg","room-8-3.jpg","room-8-4.jpg"], desc:"The big table. Eight seats for the whole team, or a pitch that needs the room.", tags:["8 SEATS","370 LE FIRST HR","+180 LE/HR AFTER"]},
+    {name:"Class Room", imgs:["classroom.jpg"], desc:"Rows of desks, a whiteboard up front. For workshops, courses, and teaching a full room.", tags:["TEACHING ROOM","600 LE / HR"]},
+    {name:"Shared Space", imgs:["shared-space.jpg"], desc:"Open tables in a shared room. Work near people who are also getting things done.", tags:["OPEN DESK","50–150 LE / DAY"]},
+    {name:"Drawing Room", imgs:["drawing-room.jpg","drawing-room-2.jpg","drawing-room-3.jpg","drawing-room-4.jpg","drawing-room-5.jpg","drawing-room-6.jpg"], desc:"A stand-up drafting table for sketching, pacing, and thinking on your feet.", tags:["STANDING DESK","80–200 LE / DAY"]}
   ];
+
+  function roomGroup(name){ return 'room-'+name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 
   var grid = document.getElementById('roomsGrid');
   grid.innerHTML = rooms.map(function(r, i){
     var tags = r.tags.map(function(t){return '<span class="font-mono text-[10.5px] tracking-[0.04em] uppercase text-brassdeep">'+t+'</span>';}).join('');
+    var group = roomGroup(r.name);
+    var thumbs = r.imgs.length > 1 ? ''
+      + '<div class="grid grid-cols-4 gap-1 p-1 bg-ink/[0.04]">'
+      + r.imgs.slice(1).map(function(src){
+          return '<div class="relative aspect-square overflow-hidden cursor-pointer" data-lightbox-group="'+group+'" tabindex="0" role="button" aria-label="Enlarge another photo of '+r.name+'">'
+            + '<img src="'+src+'" alt="'+r.name+'" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">'
+            + '</div>';
+        }).join('')
+      + '</div>'
+      : '';
     return ''
       + '<div data-reveal class="group relative border border-ink/10 bg-papercard opacity-0 translate-y-4 transition-all duration-700 delay-['+(i*60)+'ms] motion-reduce:transition-none">'
       +   '<i class="absolute top-4 left-4 w-5 h-5 border-t-2 border-l-2 border-brass/45 transition-all duration-300 ease-focus group-hover:top-2.5 group-hover:left-2.5 group-hover:border-brassdeep pointer-events-none z-10"></i>'
       +   '<i class="absolute top-4 right-4 w-5 h-5 border-t-2 border-r-2 border-brass/45 transition-all duration-300 ease-focus group-hover:top-2.5 group-hover:right-2.5 group-hover:border-brassdeep pointer-events-none z-10"></i>'
       +   '<i class="absolute bottom-4 left-4 w-5 h-5 border-b-2 border-l-2 border-brass/45 transition-all duration-300 ease-focus group-hover:bottom-2.5 group-hover:left-2.5 group-hover:border-brassdeep pointer-events-none z-10"></i>'
       +   '<i class="absolute bottom-4 right-4 w-5 h-5 border-b-2 border-r-2 border-brass/45 transition-all duration-300 ease-focus group-hover:bottom-2.5 group-hover:right-2.5 group-hover:border-brassdeep pointer-events-none z-10"></i>'
-      +   '<div class="relative aspect-[4/3] flex items-center justify-center overflow-hidden border-b border-ink/10 cursor-pointer bg-[repeating-linear-gradient(135deg,rgba(20,18,15,0.025)_0px,rgba(20,18,15,0.025)_1px,transparent_1px,transparent_14px)]" data-lightbox-group="rooms" tabindex="0" role="button" aria-label="Enlarge photo of '+r.name+'">'
-      +     '<img src="'+r.img+'" alt="'+r.name+'" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-focus group-hover:scale-[1.045]">'
+      +   '<div class="relative aspect-[4/3] flex items-center justify-center overflow-hidden border-b border-ink/10 cursor-pointer bg-[repeating-linear-gradient(135deg,rgba(20,18,15,0.025)_0px,rgba(20,18,15,0.025)_1px,transparent_1px,transparent_14px)]" data-lightbox-group="'+group+'" tabindex="0" role="button" aria-label="Enlarge photo of '+r.name+'">'
+      +     '<img src="'+r.imgs[0]+'" alt="'+r.name+'" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-focus group-hover:scale-[1.045]">'
+      +     (r.imgs.length > 1 ? '<span class="absolute right-2.5 bottom-2.5 font-mono text-[10px] tracking-wider text-paper bg-ink/55 px-2 py-1 backdrop-blur-sm">1/'+r.imgs.length+'</span>' : '')
       +   '</div>'
+      +   thumbs
       +   '<div class="p-[22px] pb-6">'
       +     '<h3 class="font-display font-bold text-[1.15rem] mb-2">'+r.name+'</h3>'
       +     '<p class="text-graphite text-[0.92rem] mb-4">'+r.desc+'</p>'
       +     '<div class="flex flex-wrap gap-2 gap-x-3.5 mb-[18px]">'+tags+'</div>'
       +     '<a class="font-mono text-xs font-semibold tracking-wider uppercase text-ink hover:text-brassdeep inline-flex items-center gap-1.5 group/link" href="'+BOOK_URL+'">Reserve this room <svg class="w-[13px] h-[13px] transition-transform group-hover/link:translate-x-1"><use href="#arrowRight"/></svg></a>'
       +   '</div>'
+      + '</div>';
+  }).join('');
+
+  var around = [
+    {label:"Outdoor Terrace", imgs:["outdoor.jpg","outdoor-2.jpg","outdoor-3.jpg","outdoor-4.jpg"]},
+    {label:"Reception", imgs:["reception.jpg","reception-2.jpg","reception-3.jpg","reception-4.jpg","reception-5.jpg","reception-6.jpg"]},
+    {label:"Coffee Corner", imgs:["coffee-corner.jpg","coffee-corner-2.jpg"]}
+  ];
+  var aroundGrid = document.getElementById('aroundGrid');
+  aroundGrid.innerHTML = around.map(function(a){
+    var group = roomGroup(a.label);
+    var thumbs = a.imgs.length > 1 ? ''
+      + '<div class="grid grid-cols-4 gap-1 p-1 bg-ink/[0.04]">'
+      + a.imgs.slice(1).map(function(src){
+          return '<div class="relative aspect-square overflow-hidden cursor-pointer" data-lightbox-group="'+group+'" tabindex="0" role="button" aria-label="Enlarge another photo of '+a.label+'">'
+            + '<img src="'+src+'" alt="'+a.label+'" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">'
+            + '</div>';
+        }).join('')
+      + '</div>'
+      : '';
+    return ''
+      + '<div class="border border-ink/10">'
+      +   '<div class="group relative aspect-[5/4] overflow-hidden cursor-pointer" data-lightbox-group="'+group+'" tabindex="0" role="button" aria-label="Enlarge photo of '+a.label+'">'
+      +     '<img src="'+a.imgs[0]+'" alt="'+a.label+'" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 ease-focus group-hover:scale-[1.045]">'
+      +     '<span class="absolute left-3.5 bottom-3.5 font-mono text-[11px] tracking-[0.08em] uppercase text-paper bg-ink/55 px-2.5 py-1.5 backdrop-blur-sm">'+a.label+'</span>'
+      +     (a.imgs.length > 1 ? '<span class="absolute right-2.5 bottom-2.5 font-mono text-[10px] tracking-wider text-paper bg-ink/55 px-2 py-1 backdrop-blur-sm">1/'+a.imgs.length+'</span>' : '')
+      +   '</div>'
+      +   thumbs
       + '</div>';
   }).join('');
 })();

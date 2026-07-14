@@ -75,6 +75,17 @@
     </div>
   </div>
 
+  <!-- PAST EVENTS GALLERY -->
+  <section class="pb-16">
+    <div class="max-w-wrap mx-auto px-5">
+      <div data-reveal class="max-w-[640px] mb-8 opacity-0 translate-y-4 transition-all duration-700 motion-reduce:transition-none">
+        <div class="font-mono text-[11px] font-medium tracking-[0.14em] uppercase text-brassdeep flex items-center gap-2.5 mb-4"><span class="w-4 h-px bg-brassdeep"></span>From Past Events</div>
+        <h2 class="font-display font-bold text-[1.7rem] sm:text-4xl">A pottery-painting afternoon, a few weeks back.</h2>
+      </div>
+      <div data-reveal id="eventsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 auto-rows-[140px] sm:auto-rows-[160px] opacity-0 translate-y-4 transition-all duration-700 motion-reduce:transition-none"></div>
+    </div>
+  </section>
+
   <!-- EMPTY STATE -->
   <section class="pb-24">
     <div class="max-w-wrap mx-auto px-5">
@@ -134,6 +145,9 @@
 </footer>
 
 <svg class="absolute w-0 h-0 overflow-hidden" aria-hidden="true">
+  <symbol id="arrowRight" viewBox="0 0 16 16">
+    <path d="M2 8H14M14 8L9.5 3.5M14 8L9.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </symbol>
   <symbol id="icoWhatsapp" viewBox="0 0 24 24">
     <path d="M12.02 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.38A9.96 9.96 0 0 0 12.02 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.2c-1.6 0-3.1-.43-4.4-1.19l-.31-.18-3.12.82.83-3.04-.2-.32A8.18 8.18 0 1 1 20.2 12.02 8.19 8.19 0 0 1 12.02 20.2Zm4.52-6.13c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.79.96-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z" fill="currentColor"/>
   </symbol>
@@ -147,6 +161,45 @@
   </symbol>
 </svg>
 
+<div class="lightbox-overlay fixed inset-0 z-[200] flex items-center justify-center p-6 bg-ink/90 opacity-0 pointer-events-none transition-opacity duration-300 motion-reduce:transition-none" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="fixed w-11 h-11 flex items-center justify-center bg-paper/10 border border-paper/25 text-paper hover:bg-brass/30 hover:border-brass transition-colors top-5 right-5" id="lightboxClose" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 3L15 15M15 3L3 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </button>
+  <button class="fixed w-11 h-11 flex items-center justify-center bg-paper/10 border border-paper/25 text-paper hover:bg-brass/30 hover:border-brass transition-colors top-1/2 -translate-y-1/2 left-5" id="lightboxPrev" aria-label="Previous photo">
+    <svg width="16" height="16" viewBox="0 0 16 16" class="-scale-x-100" aria-hidden="true"><use href="#arrowRight"/></svg>
+  </button>
+  <button class="fixed w-11 h-11 flex items-center justify-center bg-paper/10 border border-paper/25 text-paper hover:bg-brass/30 hover:border-brass transition-colors top-1/2 -translate-y-1/2 right-5" id="lightboxNext" aria-label="Next photo">
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><use href="#arrowRight"/></svg>
+  </button>
+  <div class="relative max-w-[min(920px,92vw)] max-h-[88vh] flex flex-col items-center">
+    <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[72vh] w-auto h-auto object-contain border border-paper/[0.14] bg-ink">
+    <div class="mt-3.5 text-paper font-mono text-xs tracking-wide text-center opacity-85 max-w-[60ch]" id="lightboxCaption"></div>
+    <div class="mt-1.5 text-brass font-mono text-[11px] tracking-wider text-center" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var photos = [
+    {src:"events-1.jpg", alt:"Painting ceramics together on the terrace", big:true},
+    {src:"events-2.jpg", alt:"Vases and plates laid out for painting"},
+    {src:"events-3.jpg", alt:"Focused on a brushstroke"},
+    {src:"events-4.jpg", alt:"Comparing finished pieces", big:true},
+    {src:"events-5.jpg", alt:"Paint palette and brushes"},
+    {src:"events-6.jpg", alt:"Group around the table"},
+    {src:"events-7.jpg", alt:"A finished painted vase"},
+    {src:"events-8.jpg", alt:"Workshop wrap-up"}
+  ];
+  var grid = document.getElementById('eventsGrid');
+  if (grid){
+    grid.innerHTML = photos.map(function(p){
+      return '<div class="group relative overflow-hidden cursor-pointer'+(p.big ? ' col-span-2 row-span-2' : '')+'" data-lightbox-group="events" tabindex="0" role="button" aria-label="Enlarge photo: '+p.alt+'">'
+        + '<img src="'+p.src+'" alt="'+p.alt+'" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-focus group-hover:scale-[1.045]">'
+        + '</div>';
+    }).join('');
+  }
+})();
+</script>
 <script src="auth-nav.js"></script>
 <script src="site.js"></script>
 </body>
