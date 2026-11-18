@@ -56,7 +56,7 @@
   <div class="relative flex flex-col overflow-hidden border-b border-ink/10">
 
     <!-- Text (left, over the cream side of the photo on desktop) -->
-    <div class="relative z-10 w-full max-w-wrap mx-auto px-5 pt-12 pb-10 md:pt-24 md:pb-28 lg:pt-28 lg:pb-36 md:min-h-[600px] lg:min-h-[680px] flex flex-col justify-center">
+    <div class="relative z-10 w-full max-w-wrap mx-auto px-5 pt-10 pb-10 min-h-[86svh] md:pt-24 md:pb-28 lg:pt-28 lg:pb-36 md:min-h-[600px] lg:min-h-[680px] flex flex-col justify-start md:justify-center">
       <div class="max-w-[520px]">
         <div data-reveal class="font-mono text-[11px] font-medium tracking-[0.14em] uppercase text-brassdeep flex items-center gap-2.5 mb-5 opacity-0 translate-y-2 blur-md transition-all duration-1000 ease-focus delay-[50ms] motion-reduce:transition-none">
           <span class="w-4 h-px bg-brassdeep"></span>Sherouk City · Diamond Mall · Cairo
@@ -72,9 +72,10 @@
     </div>
 
     <!-- Photo: full width behind the text on desktop, below the text on mobile -->
-    <div class="relative aspect-[16/10] md:aspect-auto md:absolute md:inset-y-0 md:right-0 md:left-[38%] lg:left-[36%] xl:left-[28%] md:z-0">
-      <img src="hero-main.jpg" alt="SpaceCo Workspace — meeting table, bean-bag lounge and the glass front opening onto the garden" fetchpriority="high" class="w-full h-full object-cover object-[78%_50%] md:object-right">
+    <div class="absolute inset-0 z-0 md:inset-y-0 md:right-0 md:left-[38%] lg:left-[36%] xl:left-[28%] md:z-0">
+      <img src="hero-main.jpg" alt="SpaceCo Workspace — meeting table, bean-bag lounge and the glass front opening onto the garden" fetchpriority="high" class="w-full h-full object-cover object-[52%_50%] md:object-right">
       <div aria-hidden="true" class="hidden md:block absolute inset-0 bg-[linear-gradient(90deg,#F7F3EA_0%,rgba(247,243,234,.92)_18%,rgba(247,243,234,.45)_33%,rgba(247,243,234,0)_46%)]"></div>
+      <div aria-hidden="true" class="md:hidden absolute inset-0 bg-[linear-gradient(180deg,#F7F3EA_0%,#F7F3EA_44%,rgba(247,243,234,.75)_54%,rgba(247,243,234,0)_70%)]"></div>
       <div class="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 max-w-[170px] sm:max-w-[220px] bg-papercard/95 backdrop-blur-sm border border-ink/10 shadow-xl p-3 sm:p-5">
         <div class="flex items-center gap-2 mb-2">
           <span id="statusDot" class="w-2 h-2 bg-graphite/40"></span>
