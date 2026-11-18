@@ -65,10 +65,7 @@
           The space is theirs to describe.
         </h1>
         <p data-reveal class="mt-5 text-graphite text-[1.05rem] max-w-[56ch] opacity-0 translate-y-2 blur-md transition-all duration-1000 ease-focus delay-[300ms] motion-reduce:transition-none">
-          The best way to understand SpaceCo is through the people who work, meet, study, and spend their time here.
-        </p>
-        <p data-reveal class="mt-3 text-graphite text-[1.05rem] max-w-[56ch] opacity-0 translate-y-2 blur-md transition-all duration-1000 ease-focus delay-[380ms] motion-reduce:transition-none">
-          Here’s what our community has shared about their experience.
+          Real reviews from our community on Google Maps.
         </p>
       </div>
     </div>
@@ -101,31 +98,18 @@
             <div class="font-mono text-xs text-graphite">Rated 4.8 on Google</div>
           </div>
 
-          <p class="text-graphite text-[0.98rem] max-w-[46ch]">Read what people are saying about their experience at SpaceCo.</p>
-
-        </div>
-
-        <div class="mt-8 pt-7 border-t border-ink/10">
-          <div class="font-mono text-[11px] tracking-[0.1em] uppercase text-brassdeep mb-3.5">What People Love About SpaceCo</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <div class="border border-ink/10 bg-paper p-4">
-              <div class="font-display font-bold text-[0.98rem] mb-1">Quiet &amp; focused</div>
-              <p class="text-graphite text-[0.86rem]">A comfortable environment for studying and getting work done.</p>
-            </div>
-            <div class="border border-ink/10 bg-paper p-4">
-              <div class="font-display font-bold text-[0.98rem] mb-1">Clean &amp; comfortable</div>
-              <p class="text-graphite text-[0.86rem]">A workspace people feel good spending time in.</p>
-            </div>
-            <div class="border border-ink/10 bg-paper p-4">
-              <div class="font-display font-bold text-[0.98rem] mb-1">Fast, reliable internet</div>
-              <p class="text-graphite text-[0.86rem]">Built for productive work, calls, and meetings.</p>
-            </div>
-            <div class="border border-ink/10 bg-paper p-4">
-              <div class="font-display font-bold text-[0.98rem] mb-1">Helpful team</div>
-              <p class="text-graphite text-[0.86rem]">Support when you need it, without getting in the way.</p>
+          <div>
+            <div class="font-mono text-[11px] tracking-[0.1em] uppercase text-brassdeep mb-3.5">What people love</div>
+            <div class="flex flex-wrap gap-2.5">
+              <span class="border border-ink/10 bg-paper px-4 py-2 font-display font-bold text-[0.95rem]">Quiet &amp; focused</span>
+              <span class="border border-ink/10 bg-paper px-4 py-2 font-display font-bold text-[0.95rem]">Clean &amp; comfortable</span>
+              <span class="border border-ink/10 bg-paper px-4 py-2 font-display font-bold text-[0.95rem]">Fast internet</span>
+              <span class="border border-ink/10 bg-paper px-4 py-2 font-display font-bold text-[0.95rem]">Helpful team</span>
             </div>
           </div>
+
         </div>
+
       </div>
     </div>
   </section>
@@ -133,8 +117,8 @@
   <!-- REVIEW CARDS -->
   <section class="pb-16">
     <div class="max-w-wrap mx-auto px-5">
-      <div class="font-mono text-[11px] font-medium tracking-[0.14em] uppercase text-brassdeep flex items-center gap-2.5 mb-6"><span class="w-4 h-px bg-brassdeep"></span>In Their Words</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="reviewsGrid"></div>
+      <div class="font-mono text-[11px] font-medium tracking-[0.14em] uppercase text-brassdeep flex items-center gap-2.5 mb-6"><span class="w-4 h-px bg-brassdeep"></span>From Google Maps</div>
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-5" id="reviewsGrid"></div>
     </div>
   </section>
 
@@ -208,17 +192,17 @@
 <script>
 (function(){
   var reviews = [
-    {name:"M L A", initials:"ML", meta:"59 reviews in Al Shorouk City", rating:5, time:"11 months ago", text:"A quiet, organized, beautiful, cozy, and clean place with comfortable seating and good air conditioning. Surrounded by many services, restaurants, in a chic, new mall, Diamond Mall. I highly recommend it for anyone looking to study, hold business meetings, run courses, or engage in any group activity that needs a safe, classy, and elegant environment."},
-    {name:"Rofaida Goda", initials:"RG", meta:"Local Guide · 18 reviews", rating:4, time:"9 months ago", text:"I come here often, and I really love the place — it makes me feel comfortable and relaxed. However, I had to give it 4 stars because the internet often disconnects and has high latency, which was especially problematic during an interview/video call. Also, some people eat in the shared room, which I think should not be allowed."},
-    {name:"Maram AlSebai", initials:"MA", meta:"13 reviews in Al Shorouk City", rating:4, time:"a year ago", text:"We visit the place weekly to attend a training course for my daughter. The place is quiet which helps you focus, clean space with a coffee corner and a nice panorama view. It's a well equipped workspace for meetings and brainstorming sessions."},
-    {name:"Sarah A", initials:"SA", meta:"7 reviews", rating:5, time:"a year ago", text:"Saved my work day when my wifi died. I stayed in the shared room for a budget friendly option, but it wasn't loud. There was AC and Aya was very helpful and non intrusive! Highly recommend!"},
-    {name:"Ahmed Ramzi", initials:"AR", meta:"9 reviews", rating:5, time:"a year ago", text:"It was awesome experience, i really recommend this place to anyone want to study or work in health and clean environment, for sure i will visit them again."},
-    {name:"pavly abdou", initials:"PA", meta:"2 reviews", rating:5, time:"a year ago", text:"Comfiest place for study and focusing. I really like it, keep going ❤️"},
-    {name:"Haneen Mohamed", initials:"HM", meta:"1 review", rating:5, time:"a year ago", text:"بجد من انضف و احلي workspace اللي دخلتها و سرعة النت كويسه جدا", translated:"Translated: “Honestly one of the cleanest and nicest workspaces I've been to, and the internet speed is really good.”"},
-    {name:"Mohamed Fayez ELhendawy", initials:"ME", meta:"Local Guide · 18 reviews", rating:5, time:"a year ago", text:"My second home, really I can study there more than any other places."},
-    {name:"Nouran Hassan", initials:"NH", meta:"17 reviews in Al Shorouk City", rating:5, time:"8 months ago", text:"Amazing place for studying."},
-    {name:"Ali Emam", initials:"AE", meta:"30 reviews in Al Shorouk City", rating:5, time:"4 months ago", text:"Great for studying."},
-    {name:"Heba Hesham", initials:"HH", meta:"3 reviews", rating:5, time:"a year ago", text:"Amazing with fast internet and helpful staff."}
+    {img:"gr-1.jpg", name:"M L A", initials:"ML", meta:"59 reviews in Al Shorouk City", rating:5, time:"11 months ago", text:"A quiet, organized, beautiful, cozy, and clean place with comfortable seating and good air conditioning. Surrounded by many services, restaurants, in a chic, new mall, Diamond Mall. I highly recommend it for anyone looking to study, hold business meetings, run courses, or engage in any group activity that needs a safe, classy, and elegant environment."},
+    {img:"gr-2.jpg", name:"Rofaida Goda", initials:"RG", meta:"Local Guide · 18 reviews", rating:4, time:"9 months ago", text:"I come here often, and I really love the place — it makes me feel comfortable and relaxed. However, I had to give it 4 stars because the internet often disconnects and has high latency, which was especially problematic during an interview/video call. Also, some people eat in the shared room, which I think should not be allowed."},
+    {img:"gr-3.jpg", name:"Maram AlSebai", initials:"MA", meta:"13 reviews in Al Shorouk City", rating:4, time:"a year ago", text:"We visit the place weekly to attend a training course for my daughter. The place is quiet which helps you focus, clean space with a coffee corner and a nice panorama view. It's a well equipped workspace for meetings and brainstorming sessions."},
+    {img:"gr-4.jpg", name:"Sarah A", initials:"SA", meta:"7 reviews", rating:5, time:"a year ago", text:"Saved my work day when my wifi died. I stayed in the shared room for a budget friendly option, but it wasn't loud. There was AC and Aya was very helpful and non intrusive! Highly recommend!"},
+    {img:"gr-5.jpg", name:"Ahmed Ramzi", initials:"AR", meta:"9 reviews", rating:5, time:"a year ago", text:"It was awesome experience, i really recommend this place to anyone want to study or work in health and clean environment, for sure i will visit them again."},
+    {img:"gr-6.jpg", name:"pavly abdou", initials:"PA", meta:"2 reviews", rating:5, time:"a year ago", text:"Comfiest place for study and focusing. I really like it, keep going ❤️"},
+    {img:"gr-7.jpg", name:"Haneen Mohamed", initials:"HM", meta:"1 review", rating:5, time:"a year ago", text:"بجد من انضف و احلي workspace اللي دخلتها و سرعة النت كويسه جدا", translated:"Translated: “Honestly one of the cleanest and nicest workspaces I've been to, and the internet speed is really good.”"},
+    {img:"gr-8.jpg", name:"Mohamed Fayez ELhendawy", initials:"ME", meta:"Local Guide · 18 reviews", rating:5, time:"a year ago", text:"My second home, really I can study there more than any other places."},
+    {img:"gr-9.jpg", name:"Nouran Hassan", initials:"NH", meta:"17 reviews in Al Shorouk City", rating:5, time:"8 months ago", text:"Amazing place for studying."},
+    {img:"gr-10.jpg", name:"Ali Emam", initials:"AE", meta:"30 reviews in Al Shorouk City", rating:5, time:"4 months ago", text:"Great for studying."},
+    {img:"gr-11.jpg", name:"Heba Hesham", initials:"HH", meta:"3 reviews", rating:5, time:"a year ago", text:"Amazing with fast internet and helpful staff."}
   ];
 
   function stars(rating){
@@ -230,24 +214,17 @@
   }
 
   var grid = document.getElementById('reviewsGrid');
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
   grid.innerHTML = reviews.map(function(r, i){
-    var translated = r.translated ? '<p class="text-graphite text-xs italic mt-2">' + r.translated + '</p>' : '';
+    var alt = 'Google review by ' + r.name + ', ' + r.rating + ' stars: ' + (r.translated ? r.translated.replace(/^Translated: /,'') : r.text);
     return ''
-      + '<div data-reveal class="border border-ink/10 bg-papercard p-6 flex flex-col opacity-0 translate-y-4 transition-all duration-700 delay-[' + (i * 40) + 'ms] motion-reduce:transition-none">'
-      +   '<div class="flex items-center gap-3 mb-4">'
-      +     '<div class="w-11 h-11 rounded-full bg-brassdeep text-paper flex items-center justify-center font-mono font-semibold text-sm shrink-0">' + r.initials + '</div>'
-      +     '<div class="min-w-0">'
-      +       '<div class="font-display font-bold text-sm truncate">' + r.name + '</div>'
-      +       '<div class="text-graphite text-xs truncate">' + r.meta + '</div>'
-      +     '</div>'
-      +   '</div>'
-      +   '<div class="flex items-center justify-between mb-3">'
+      + '<figure data-reveal class="break-inside-avoid mb-5 bg-white border border-ink/10 shadow-[0_1px_0_rgba(20,18,15,.04),0_10px_30px_-18px_rgba(20,18,15,.35)] hover:-translate-y-1 transition-all duration-500 ease-focus opacity-0 translate-y-4 motion-reduce:transition-none">'
+      +   '<figcaption class="flex items-center justify-between px-4 py-2.5 border-b border-ink/10 bg-papercard">'
+      +     '<span class="font-mono text-[10.5px] tracking-[0.1em] uppercase text-graphite">Google Maps review</span>'
       +     stars(r.rating)
-      +     '<span class="font-mono text-[11px] text-graphite">' + r.time + '</span>'
-      +   '</div>'
-      +   '<p class="text-ink/85 text-sm leading-relaxed flex-1" dir="auto">“' + r.text + '”</p>'
-      +   translated
-      + '</div>';
+      +   '</figcaption>'
+      +   '<img src="' + r.img + '" alt="' + esc(alt) + '" loading="lazy" class="block w-full h-auto">'
+      + '</figure>';
   }).join('');
 })();
 </script>
